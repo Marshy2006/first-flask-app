@@ -1,2 +1,4 @@
 flask
-etc...
+hashlib
+flask_wtf
+wtforms
