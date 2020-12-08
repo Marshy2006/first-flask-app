@@ -17,7 +17,7 @@ import email_validator
 import subprocess
 from hashlib import sha256
 
-path = "path/to/repoclone"
+path = "path/to/repoclone/"
 
 
 # ---------------------------------------------------------------------------------------------------
