@@ -1,7 +1,144 @@
-
+{% from "_formhelpers.html" import render_field %}
 <html>
+
 <head>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap core CSS -->
+    <title>sign in</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            font-family: Helvetica, sans-serif;
+            color: #f5f5f5;
+        }
+
+        .bodydark {
+            background-color: #121212;
+            color: #f5f5f5;
+        }
+
+        .bodylight {
+            background-color: rgb(245, 245, 245);
+            color: #121212;
+        }
+
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        body>div>form>dl {
+            width: 100%;
+        }
+
+        body>form {
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
+        }
+
+        #username {
+            padding-top: 6;
+            padding-bottom: 6;
+            padding-left: 13;
+            width: 100%;
+            margin: 0 auto;
+            border: none;
+            color: black;
+            border-radius: 10px;
+            box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        #password {
+            padding-top: 6;
+            padding-bottom: 6;
+            padding-left: 13;
+            width: 100%;
+            margin: 0 auto;
+            border: none;
+            color: black;
+            border-radius: 10px;
+            box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        body>div>form>dl>dt:nth-child(4),
+        body>div>form>dl>dt:nth-child(2) {
+            text-align: center;
+        }
+
+        body>div>form>dl>dt:nth-child(4)>label,
+        body>div>form>dl>dt:nth-child(2)>label {
+            font-family: 'Helvetica', Courier, monospace;
+            margin: 0 auto;
+        }
+
+        body>div>form>dl>div>input {
+            background-color: #4CAF50;
+            border: none;
+            font-size: 20px;
+            color: #FFFFFF;
+            padding: 10px;
+            width: 100px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .child {
+            margin: auto;
+            padding: 5%;
+            padding-top: 10%;
+            width: 40%;
+            border-radius: 3px;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0 0 15px 4px rgba(74, 74, 74, 0.1);
+        }
+
+        p {
+            font-family: Helvetica;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: 200;
+            text-align: center;
+        }
+
+        .inputcontainer {
+            text-align: center;
+        }
+
+        dd {
+            margin-inline-start: auto;
+        }
+
+        .errors {}
+    </style>
 </head>
-<body>
+
+<body {% if mode=="dark" %} class="bodydark" {% elif mode=="light" %} class="bodylight" {% endif %}>
+    <div class="child">
+        <h1>Sign In</h1>
+        <form method="POST" action="/signin">
+            <dl>
+                {{ form.csrf_token }} {{ render_field(form.username) }} {{ render_field(form.password) }}
+                <br>
+                <div class="inputcontainer">
+                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
+                </div>
+            </dl>
+        </form>
+        <div>
+            <p>Don't have an account? <a href="/signup">Sign up</a></p>
+        </div>
+    </div>
 </body>
+
 </html>
