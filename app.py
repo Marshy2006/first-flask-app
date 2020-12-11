@@ -1,6 +1,6 @@
 import json
 import os
-from os import path
+from os import path as ospath
 import hashlib
 from flask import Flask, render_template, redirect, url_for, session, jsonify, request
 from flask_wtf import Form
@@ -85,7 +85,7 @@ class Emailverify(object): # not my code - from wtforms.validators
 
 def username_in_use(form, field): # wtform validator to check if username input for signup exists in /users folder
     input = field.data
-    user_path = path.exists(path + "users/" + input + ".json")
+    user_path = ospath.exists(path + "users/" + input + ".json")
     
     if user_path == True:
         raise ValidationError('Username already in use')
@@ -209,7 +209,7 @@ class checkaccount(object): # not really my code but it works - gets the data f
             def user_exists(): # this bit is my code - checks whether username exists. if user exists, checks password.
                 username_input = other.data
                 password_input = field.data
-                user_path = path.exists(path + "users/" + username_input + ".json")
+                user_path = ospath.exists(path + "users/" + username_input + ".json")
             
                 def check_password():
                     with open(path + 'users/' + username_input + '.json') as f:
@@ -343,7 +343,7 @@ def signin():
         data = form.data
         username_input = data.get("username")
         password_input = data.get("password")
-        user_path = path.exists(path + "users/" + username_input + ".json")
+        user_path = ospath.exists(path + "users/" + username_input + ".json")
 
         def check_password():
             with open(path + 'users/' + username_input + '.json') as f:
